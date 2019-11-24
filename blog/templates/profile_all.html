@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %} Posts {%endblock%}
+{% block content %}
+
+	{% for profile in profiles %}	
+		{% include 'profile_inline.html' with profile=profile %}
+		
+	{% endfor %}	
+
+{% endblock %}

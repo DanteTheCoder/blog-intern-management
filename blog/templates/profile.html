@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block title %} Profile {% endblock %}
+
+{% block content %}
+
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+{% load static %}
+<link href="{% static 'profile.css' %}" rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+
+<div class="container bg-transparent" style="margin-top: 20px; margin-bottom: 20px;">
+	<div class="row panel bg_blur" style="margin-top: 20px; margin-bottom: 20px;">
+		<div class="col-md-4 bg_blur">
+    	    <a href="#" class="follow_btn hidden-xs">Follow</a>
+		</div>
+        <div class="col-md-8  col-xs-12">
+           <img src="https://www.thumbshots.com/portals/0/Images/StayLonger.png" class="img-thumbnail picture hidden-xs" />
+           <div class="header text-dark">
+                {% if obj %}
+                <h1>{{ user.get_full_name }}</h1>
+                {% if not user.is_staff %}
+                <h3>Staj Tarihleri : {{obj.startdate}} -- {{obj.duedate}}</h3>
+                {%endif%}
+                <h4>{{obj.trait}}</h4>
+                <span>{{obj.content}}</span>
+                {% else %}
+                <h1>{{ user.get_full_name }}</h1>
+                <h4>default</h4>
+                <span>default</span>
+                {% endif %}
+           </div>
+        </div>
+    </div>   
+
+    {% if request.user == user %}
+	<div class="col-md-8">    
+        
+        <a href="/blog/create/" class="btn btn-style">New Post</a>
+		<a href="/blog/profile/{{user}}/edit" class="btn btn-style">Edit Profile</a>
+    </div>
+    {%endif%}
+    <br>
+    {% for object in object_list %}	
+		
+	{% include 'list_inline.html' with blog_post=object %}
+
+{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block jquery %}
+
+    $("#id_periodstart").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "yy-mm-dd",
+        numberOfMonths: 1,
+        maxDate:365
+    });
+
+    $("#id_periodend").datepicker({
+
+        changeMonth: true,
+        changeYear: true,
+        dateFormat: "yy-mm-dd",
+        numberOfMonths: 1,
+        maxDate:365
+    }); 
+
+{% endblock %}  

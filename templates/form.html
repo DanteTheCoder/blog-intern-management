@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+{% block content %}
+<br>
+<div class='w-50 mx-auto' >
+<form method='POST' action='{{request.path}}'> {% csrf_token %}
+	{{ form.as_p }}
+	<button type='submit'  class="btn btn-dark" style="width:120px;height:40px;" value="Submit">Save</button>
+<form>
+</div>
+
+
+{% endblock %}
+
+
+{% block jquery %}
+
+	$("#id_startdate").datepicker({
+
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: "yy-mm-dd",
+		numberOfMonths: 1,
+		maxDate:365
+	});
+
+	$("#id_duedate").datepicker({
+
+		changeMonth: true,
+		changeYear: true,
+		dateFormat: "yy-mm-dd",
+		numberOfMonths: 1,
+		maxDate:365
+	});	
+
+{% endblock %}	

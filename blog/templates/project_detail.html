@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %} View Project {%endblock%}
+{% block content %}
+
+{% if request.user.is_authenticated  and request.user in prowners or request.user == project.projectgiver %}
+
+<div class="jumbotron">
+ 	 <h1 class="display-4">{{ project.title }} given to :
+       {% for projectowner in prowners %} 
+        {{projectowner.username}} ,
+    
+      {% endfor %}
+     by {{project.projectgiver}}</h1> <br> <br>
+  	<p class="lead spaced">{{ project.content|linebreaksbr }}</p>
+
+    <br>
+
+     <div class="progress" style="height: 20px;">
+    {% if project.progress < 30 %}
+      <div class="progress-bar bg-danger" role="progressbar" style="width: {{project.progress}}%" aria-valuemin="0" aria-valuemax="100">
+    {%elif project.progress > 30 and project.progress < 70%}
+      <div class="progress-bar bg-primary" role="progressbar" style="width: {{project.progress}}%" aria-valuemin="0" aria-valuemax="100">
+    {%else%}
+      <div class="progress-bar bg-success" role="progressbar" style="width: {{project.progress}}%" aria-valuemin="0" aria-valuemax="100">
+     {%endif%}    
+          {% if project.progress >= 100 %} Completed {%else%} {{project.progress}}%  {%endif%}</div>
+      </div>
+
+      <br>
+
+  	<form method='POST' action='{{request.path}}'> {% csrf_token %}
+  		<div class='row'> 
+        <div class='col-sm'> Progress : {{ form.progress }} </div>
+  			<div class='col-sm'> Started :  {{form.startdate}} </div>
+  			<div class='col-sm'> Ends : {{form.duedate}} </div>
+  		</div>
+      
+  		<br>	
+ 	<button type='submit' class="btn btn-dark" style="width:120px;height:40px;" value="Submit">Save</button>
+
+ 	{% if request.user.is_staff %}
+	<a href="edit/" class="btn btn-dark" style="width:90px;height:40px;">Edit</a>
+	<a href="delete/" class="btn btn-dark" style="width:90px;height:40px;">Delete</a>
+	{% endif %}
+	<br> <br>
+  {% for task in tasks %} 
+    {% include 'task_inline.html' with task=task %}
+    
+  {% endfor %}
+
+	</form>
+	
+</div>
+
+
+
+{% endif %}	
+
+{% endblock %}

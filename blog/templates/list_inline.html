@@ -1,0 +1,20 @@
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+<div class="card mb-5 text-dark bg_color transparent">
+	<!--<img src="..." class="card-img-top" alt="...">-->	
+  <div class="card-header font-weight-heavy">
+    {{blog_post.user.username}}
+  </div>
+  <div class="card-body" style=>
+  	{% if blog_post.image %}
+  		 <a href="/blog/{{ blog_post.get_absolute_url }}">
+  			<img src="{{blog_post.image.url}}" class='card-img-top' />
+  		</a>
+      <br> <br>
+  	{% endif %}	
+    <h5 class="card-title">{{blog_post.title}} <small class='text-dark'>{{blog_post.updated}}</small> </h5> 
+    <p class="card-text">{{ blog_post.content|linebreaks|truncatewords:30 }}</p>
+    <a href="/blog/{{ blog_post.get_absolute_url }}" class="btn btn-style" style="width:120px;height:40px;">See Post</a>
+  </div>
+</div>

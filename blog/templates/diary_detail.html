@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+{% block title %} View Entry {%endblock%}
+{% block content %}
+<div class="card mb-5 text-dark bg_color transparent">
+	<div class="card-header font-weight-heavy">
+	<h1> {{ object.title }}<small class='text-dark'> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;({{object.associated_task}})</small></h1>
+	</div>
+	<div class="card-body" style=>
+		<p> {{ object.content|linebreaks }} </p>
+		{% if object.file %}
+		<img src="{{object.file.url}}" class='card-img-top' />
+		{% endif %}
+	{% if request.user.is_authenticated and request.user == object.user %}
+	
+	<a href="edit/" class="btn btn-primary" style="width:90px;height:40px;">Edit</a>
+	<a href="delete/" class="btn btn-primary" style="width:90px;height:40px;">Delete</a>
+
+{% endif %}	
+  </div>
+</div>
+{% endblock %}"

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Posts {%endblock%}
+{% block content %}
+
+	<br>
+     &nbsp;&nbsp;   <a href="/blog/create" class="btn btn-dark">New Post</a>
+    <br>
+    <br>
+	
+	{% for object in object_list %}	
+		{% include 'list_inline.html' with blog_post=object %}
+		
+	{% endfor %}	
+
+{% endblock %}

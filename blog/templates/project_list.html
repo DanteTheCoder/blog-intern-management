@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Projects {%endblock%}
+{% block content %}
+
+    {% if request.user.is_staff %}
+    <br>
+      &nbsp;&nbsp;  <a href="/projects/create" class="btn btn-dark">New Project</a>
+    <br>
+    <br>
+    {% endif %}
+	{% for project in projects %}	
+		
+		{% include 'project_inline.html' with project=project %}
+		
+	{% endfor %}	
+
+
+
+{% endblock %}

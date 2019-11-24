@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %} View Task {%endblock%}
+{% block content %}
+{% load static %}
+   
+    <link rel="stylesheet" href="{% static 'img.css' %}" type="text/css"> 
+{% if request.user.is_authenticated and request.user in accessible_by or request.user == task.taskgiver %}
+
+<div class="jumbotron">
+ 	 <h1 class="display-4">{{ task.title }} : given by {{task.taskgiver}}</h1> <br> 
+  	<p class="lead">{{ task.content|linebreaksbr }}</p>
+
+  	<form method='POST' action='{{request.path}}'> {% csrf_token %}
+      
+  		<div class='row'> 
+        <div class='col-sm'> Status : {{ form.situation }} </div>
+  			<div class='col-sm'> Started : {{form.startdate  }} </div>
+  			<div class='col-sm'> Ends : {{form.duedate}} </div>
+  		</div>
+  		<br>	
+ 	<button type='submit' class="btn btn-dark" style="width:120px;height:40px;" value="Submit">Save</button>
+
+ 	{% if request.user.is_staff %}
+	<a href="edit/" class="btn btn-dark" style="width:90px;height:40px;">Edit</a>
+	<a href="delete/" class="btn btn-dark" style="width:90px;height:40px;">Delete</a>
+	{% endif %}
+	
+
+	</form>
+	
+</div>
+
+
+
+{% endif %}	
+
+{% endblock %}
+

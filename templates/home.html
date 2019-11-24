@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+
+	<div class="jumbotron bg-transparent">
+		<div class="container">
+		  <h1 class="display-4">Welcome back {{user}}</h1>
+		  {% if request.user.is_staff %}
+		  <p class="lead">Hello sir. You can check the progress your interns made in their projects or assign new tasks and projects to them.</p>
+		  {% else %}
+		  <p class="lead">Have you made some progress in your projects today ? If so, be sure to write them in your diary and update project progress.</p>
+		  {% endif %}
+		</div>
+	</div>
+
+{% else %}
+	
+	<div class="jumbotron bg-transparent">
+	  <h1 class="display-4">Welcome!</h1>
+	  <p class="lead font-weight-light">Stablr is a platform where interns can share stuff with each other.</p>
+	  <hr class="my-4">
+	  <h5 class='font-weight-normal'>It seems you haven't signed in yet.</h5>
+		<a href=/blog class = "btn btn-dark font-weight-light">Sign In</a>
+		<br>
+		<br>
+		<h5 class='font-weight-normal'>Don't have an account ?</h5>
+		<a href=/signup class = "btn btn-dark font-weight-light">Sign Up</a>
+	</div>
+
+{% endif %}
+{% endblock %}

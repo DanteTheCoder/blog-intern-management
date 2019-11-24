@@ -1,0 +1,19 @@
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+<div class="card mb-5 text-dark bg_color transparent">
+	<!--<img src="..." class="card-img-top" alt="...">-->	
+  <div class="card-header font-weight-heavy">
+    <h4 class="card-title">{{project.title}} <small class='text-dark' style='text-align:center'> ({{project.startdate}} - - - {{project.duedate}})</small> </h4> 
+  </div>
+  <div class="card-body" >
+  	
+    <h5 class="card-title">Assigned to 
+      {% for projectowner in project.projectowners.all %} 
+        {{projectowner.username}} ,
+    
+      {% endfor %} by : {{project.projectgiver.username}} </h5> 
+    <p class="card-text">{{ project.content|linebreaks|truncatewords:30 }}</p>
+    <a href="{{ project.get_absolute_url }}" class="btn btn-style" style="width:120px;height:40px;">See Project</a>
+  </div>
+</div>

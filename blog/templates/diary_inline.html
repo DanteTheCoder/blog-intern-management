@@ -1,0 +1,20 @@
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+<div class="card mb-5 text-dark bg_color transparent">
+	<!--<img src="..." class="card-img-top" alt="...">-->	
+  <div class="card-header font-weight-heavy">
+    {{diary.user.username}}
+  </div>
+  <div class="card-body" style=>
+  	{% if diary.file %}
+  		 <a href="/files/{{diary.file.url}}">
+  			<img src="{{diary.file.url}}" class='card-img-top' />
+  		</a>
+      <br> <br>
+  	{% endif %}	
+    <h5 class="card-title">{{diary.title}} <small class='text-dark'>{{diary.date}}</small> </h5> 
+    <p class="card-text">{{ diary.content|linebreaks|truncatewords:30 }}</p>
+    <a href="/diaries/{{ diary.get_absolute_url }}" class="btn btn-style" style="width:120px;height:40px;">See Entry</a>
+  </div>
+</div>

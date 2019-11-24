@@ -1,0 +1,14 @@
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+<div class="card mb-5 text-dark bg_color transparent">
+	<!--<img src="..." class="card-img-top" alt="...">-->	
+  <div class="card-header font-weight-heavy">
+    
+  </div>
+  <div class="card-body" >
+  	
+    <h5 class="card-title">{{profile.user}} <small class='text-dark' style='text-align:center'> ({{profile.startdate}} - - - {{profile.duedate}})</small> </h5> 
+    <a href="/blog/profile/{{ profile.user.username }}" class="btn btn-style" style="width:120px;height:40px;">See Profile</a>
+  </div>
+</div>

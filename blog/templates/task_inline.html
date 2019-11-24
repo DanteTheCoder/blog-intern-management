@@ -1,0 +1,16 @@
+{% load static %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+
+<div class="card mb-5 text-dark bg_color transparent">
+	<!--<img src="..." class="card-img-top" alt="...">-->	
+  <div class="card-header font-weight-heavy">
+   <h4> {{task.associated_project.title}} </h4>
+  </div>
+  <div class="card-body" >
+  	
+    <h5 class="card-title">{{task.title}} <small class='text-dark'>({{task.startdate}} ---  {{task.duedate}})</small> </h5> 
+    <h5 class="card-title">Assigned by : {{task.taskgiver.username}} </h5> 
+    <p class="card-text">{{ task.content|linebreaks|truncatewords:30 }}</p>
+    <a href="/tasks/{{ task.get_absolute_url }}" class="btn btn-style" style="width:120px;height:40px;">See Task</a>
+  </div>
+</div>

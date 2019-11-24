@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %} View Post {%endblock%}
+{% load static %}
+{% block content %}
+<link href="{% static 'colors.css' %}" rel='stylesheet' type='text/css'>
+	<div class="card mb-5 text-dark bg_color transparent">
+		<div class="card-header font-weight-heavy">
+		<h1> {{ object.title }} </h1>
+		</div>
+		<div class="card-body" style=>
+			<p> {{ object.content|linebreaks }} </p>
+			{% if object.image %}
+			<img src="{{object.image.url}}" class='card-img' />
+			{% endif %}
+	{% if request.user.is_authenticated and request.user == object.user %}
+	<br> <br>
+	<a href="edit/" class="btn btn-dark" style="width:90px;height:40px;">Edit</a>
+	<a href="delete/" class="btn btn-dark" style="width:90px;height:40px;">Delete</a>
+
+{% endif %}	
+  </div>
+</div>
+{% endblock %}"

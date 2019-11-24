@@ -1,0 +1,40 @@
+.bg_color
+{
+    
+    background-size: cover;
+    color: #fff;
+    background-color: #607d8b;
+}
+
+.bg_alt_color
+{
+    
+    background-size: cover;
+    color: #fff;
+    background-color: #78909c;
+}
+
+.card-img-top {
+    width: 100%;
+    height: 25vw;
+    object-fit: cover;
+}
+
+.transparent{
+  background:rgba(255,255,255,0.5);
+}
+
+.btn-style{
+    color: #fff;
+    background-color: #78909c;
+    border-color: #adadad;
+    width: 33.3%;
+}
+
+.btn-style:hover {
+    color: #333;
+    background-color: #37474f;
+    border-color: #adadad;
+    width: 33.3%;
+   
+}

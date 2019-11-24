@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %} Tasks {%endblock%}
+{% block content %}
+    
+    {% if request.user.is_staff %}
+    <br>
+      &nbsp;&nbsp;  <a href="/tasks/create" class="btn btn-dark">New Task</a>
+    <br>
+    <br>
+    {% endif %}
+	{% for task in tasks %}	
+		{% include 'task_inline.html' with task=task %}
+		
+	{% endfor %}	
+
+
+
+{% endblock %}
